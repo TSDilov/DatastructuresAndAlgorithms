@@ -28,5 +28,17 @@
             var newSecond = new string(secondChars);
             return newFirst == newSecond;
         }
+
+        public static string ReverseString(string keyString)
+        {
+            var result = new char[keyString.Length];
+            var iteration = keyString.Length - 1;
+            foreach (var ch in keyString)
+            {
+                result[iteration--] = ch;
+            }
+
+            return new string(result);
+        }
     }
 }

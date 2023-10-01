@@ -4,6 +4,6 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine(StringOperation.AreAnagrams("Silent", "Listasen"));
+        Console.WriteLine(StringOperation.ReverseString("asdfg"));
     }
 }
