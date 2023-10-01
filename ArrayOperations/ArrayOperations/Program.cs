@@ -4,8 +4,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] array = { 1, 2, 3, 4, 5 };
-        Console.WriteLine(ArrayOperation.FindMatchingPairsThatSumTheLookingInt(array, 9));
-
+        int[] array = { 3, 2, 3, 1, 5, 4 };
+        var sortedArray = ArrayOperation.Descending(array);
+        Console.WriteLine(string.Join(" ", sortedArray));
     }
 }

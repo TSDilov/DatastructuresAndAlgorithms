@@ -20,19 +20,7 @@ namespace ArrayOperations
 
             return array;
         }
-
-        private static void ReverseArray(int[] array, int start, int end)
-        {
-            while (start < end)
-            {
-                var temp = array[start];
-                array[start] = array[end];
-                array[end] = temp;
-                start++;
-                end--;
-            }
-        }
-
+        
         public static bool FindMatchingPairsThatSumTheLookingInt(int[] array, int lookingSum)
         {
             var seenNumbers = new HashSet<int>();
@@ -44,6 +32,60 @@ namespace ArrayOperations
             }
 
             return false;
+        }
+
+        public static int[] Ascending(int[] array) 
+        {
+            bool swapped;
+            do
+            {
+                swapped = false;
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    if (array[i] > array[i + 1])
+                    {
+                        int temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
+
+            return array;
+        }
+
+        public static int[] Descending(int[] array)
+        {
+            bool swapped;
+            do
+            {
+                swapped = false;
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    if (array[i] < array[i + 1])
+                    {
+                        int temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
+                        swapped = true;
+                    }
+                }
+            } while (swapped);
+
+            return array;
+        }
+
+        private static void ReverseArray(int[] array, int start, int end)
+        {
+            while (start < end)
+            {
+                var temp = array[start];
+                array[start] = array[end];
+                array[end] = temp;
+                start++;
+                end--;
+            }
         }
     }
 }
