@@ -1,4 +1,6 @@
-﻿using System.Runtime.CompilerServices;
+﻿using ArrayOperations.Models;
+using System.Runtime.CompilerServices;
+using System.Runtime.ExceptionServices;
 
 namespace ArrayOperations
 {
@@ -29,6 +31,19 @@ namespace ArrayOperations
                 start++;
                 end--;
             }
+        }
+
+        public static bool FindMatchingPairsThatSumTheLookingInt(int[] array, int lookingSum)
+        {
+            var seenNumbers = new HashSet<int>();
+            foreach (var number in array) 
+            {
+                var complement = lookingSum - number;
+                if (seenNumbers.Contains(complement)) {  return true; }
+                seenNumbers.Add(number);
+            }
+
+            return false;
         }
     }
 }
