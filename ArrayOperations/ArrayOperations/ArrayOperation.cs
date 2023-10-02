@@ -180,6 +180,27 @@ namespace ArrayOperations
             array[max] = temp;
         }
 
+        public static void Move(params int[] array)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == 0)
+                {
+                    MoveZeroToEnd(array, i);
+                }
+            }
+        }
+
+        private static void MoveZeroToEnd(int[] array, int index)
+        {
+            for (int i = index; i < array.Length - 1; i++)
+            {
+                var temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+            }
+        }
+
         private static void ReverseArray<T>(T[] array, int start, int end)
         {
             while (start < end)

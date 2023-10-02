@@ -4,8 +4,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] array = { 1, 3, 5, 6, 10, 15 };
-        ArrayOperation.MinAndMaxSwap(array);
+        int[] array = { 0, 1, 0, 3, 12 };
+        ArrayOperation.Move(array);
         Console.WriteLine(string.Join(" ", array));
     }
 }
