@@ -191,6 +191,18 @@ namespace ArrayOperations
             }
         }
 
+        public static bool ContainsDuplicates(params int[] array)
+        {
+            var elementSequance = new Dictionary<int, int>();
+            foreach (int element in array)
+            {
+                if (elementSequance.ContainsKey(element)) { return true; }
+                else { elementSequance.Add(element, 1); }                 
+            }
+
+            return false;
+        }
+
         private static void MoveZeroToEnd(int[] array, int index)
         {
             for (int i = index; i < array.Length - 1; i++)
