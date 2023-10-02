@@ -191,10 +191,10 @@ namespace ArrayOperations
             }
         }
 
-        public static bool ContainsDuplicates(params int[] array)
+        public static bool ContainsDuplicates<T>(params T[] array)
         {
-            var elementSequance = new Dictionary<int, int>();
-            foreach (int element in array)
+            var elementSequance = new Dictionary<T, int>();
+            foreach (T element in array)
             {
                 if (elementSequance.ContainsKey(element)) { return true; }
                 else { elementSequance.Add(element, 1); }                 

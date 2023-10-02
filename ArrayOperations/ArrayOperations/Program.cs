@@ -4,7 +4,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] array = { 0, 1, 3, 12 };
+        int[] array = { 0, 1, 3, 12, 0 };
         Console.WriteLine(ArrayOperation.ContainsDuplicates(array));
         Console.WriteLine(string.Join(" ", array));
     }
