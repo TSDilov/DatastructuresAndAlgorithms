@@ -4,8 +4,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] array = { 3, 2, 3, 1, 5, 4 };
-        var sortedArray = ArrayOperation.Descending(array);
-        Console.WriteLine(string.Join(" ", sortedArray));
+        int[] array = { 1, 2, 3, 4, 5 };
+        ArrayOperation.ReverseArray(array);
+        Console.WriteLine(string.Join(" ", array));
     }
 }

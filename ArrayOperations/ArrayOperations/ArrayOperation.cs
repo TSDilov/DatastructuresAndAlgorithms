@@ -1,4 +1,5 @@
 ﻿using ArrayOperations.Models;
+using System.Data.SqlTypes;
 using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 
@@ -76,11 +77,21 @@ namespace ArrayOperations
             return array;
         }
 
-        private static void ReverseArray(int[] array, int start, int end)
+        public static void ReverseArray<T>(T[] array)
+        {
+            for (int i = 0; i < array.Length / 2; i++)
+            {
+                T temp = array[i];
+                array[i] = array[array.Length - 1 - i];
+                array[array.Length -1 - i] = temp;
+            }
+        }
+
+        private static void ReverseArray<T>(T[] array, int start, int end)
         {
             while (start < end)
             {
-                var temp = array[start];
+                T temp = array[start];
                 array[start] = array[end];
                 array[end] = temp;
                 start++;
