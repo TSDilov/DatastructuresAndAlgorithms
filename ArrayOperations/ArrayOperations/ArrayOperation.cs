@@ -159,6 +159,27 @@ namespace ArrayOperations
             return mergedArray;
         }
 
+        public static void MinAndMaxSwap(int[] array)
+        {
+            int min = 0, max = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[min] > array[i])
+                {
+                    min = i;
+                }
+
+                if (array[max] < array[i])
+                {
+                    max = i;
+                }
+            }
+
+            var temp = array[min];
+            array[min] = array[max];
+            array[max] = temp;
+        }
+
         private static void ReverseArray<T>(T[] array, int start, int end)
         {
             while (start < end)
