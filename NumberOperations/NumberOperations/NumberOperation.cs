@@ -17,5 +17,20 @@
 
             return dynamic[n];
         }
+
+        public static int Factorial(int number)
+        {
+            if (number == 1) { return 1; }
+
+            return number * Factorial(number - 1);
+        }
+
+        public static int Fibonacci(int n)
+        {
+            if (n == 0) return 0;
+            if (n == 1) return 1;
+
+            return Fibonacci(n - 1) + Fibonacci(n - 2);
+        }
     }
 }

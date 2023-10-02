@@ -4,6 +4,6 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine(NumberOperation.CountWaysForClimbing(10));
+        Console.WriteLine(NumberOperation.Fibonacci(10));
     }
 }
