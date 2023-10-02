@@ -125,6 +125,40 @@ namespace ArrayOperations
             }
         }
 
+        public static int[] MergeArrays(int[] firstArray, int[] secondArray)
+        {
+            Array.Sort(firstArray);
+            Array.Sort(secondArray);
+            var firstLength = firstArray.Length;
+            var secondLength = secondArray.Length;
+            var mergedArray = new int[firstLength + secondLength];
+
+            int i = 0, j = 0, k = 0;
+            while (i < firstLength && j < secondLength)
+            {
+                if (firstArray[i] < secondArray[j])
+                {
+                    mergedArray[k++] = firstArray[i++];
+                }
+                else
+                {
+                    mergedArray[k++] = secondArray[j++];
+                }
+            }
+
+            while (i < firstLength)
+            {
+                mergedArray[k++] = firstArray[i++];
+            }
+
+            while (j < secondLength)
+            {
+                mergedArray[k++] = secondArray[j++];
+            }
+
+            return mergedArray;
+        }
+
         private static void ReverseArray<T>(T[] array, int start, int end)
         {
             while (start < end)
