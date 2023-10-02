@@ -87,6 +87,44 @@ namespace ArrayOperations
             }
         }
 
+        public static T GetMajorityElement<T>(T[] array)
+        {
+            var dictionary = new Dictionary<T, int>();
+
+            foreach (var element in array)
+            {
+                if (!dictionary.ContainsKey(element))
+                {
+                    dictionary.Add(element, 1);
+                }
+                else
+                {
+                    dictionary[element]++;
+                }
+            }
+
+            T majorityElement = default(T);
+            var maxCount = 0;
+
+            foreach (var countedElement in dictionary)
+            {
+                if (countedElement.Value > maxCount)
+                {
+                    majorityElement = countedElement.Key;
+                    maxCount = countedElement.Value;
+                }
+            }
+
+            if (maxCount > array.Length / 2)
+            {
+                return majorityElement;
+            }
+            else
+            {
+                throw new InvalidOperationException("THere is no majority element!");
+            }
+        }
+
         private static void ReverseArray<T>(T[] array, int start, int end)
         {
             while (start < end)
