@@ -4,6 +4,6 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine(NumberOperation.Fibonacci(10));
+        Console.WriteLine(NumberOperation.IsPrime(6));
     }
 }

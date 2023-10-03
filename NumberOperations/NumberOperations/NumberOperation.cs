@@ -1,4 +1,6 @@
-﻿namespace NumberOperations
+﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+
+namespace NumberOperations
 {
     public static class NumberOperation
     {
@@ -31,6 +33,41 @@
             if (n == 1) return 1;
 
             return Fibonacci(n - 1) + Fibonacci(n - 2);
+        }
+
+        public static int GetGCD(int num1, int num2)
+        {
+            while (num1 != num2)
+            {
+                if (num1 > num2) num1 -= num2;
+                if (num2 > num1) num2 -= num1;
+            }
+
+            return num1;
+        }
+
+        public static int GetLCM(int num1, int num2)
+        {
+            return (num1 * num2) / GetGCD(num1, num2);
+        }
+
+        public static bool IsPrime(int number)
+        {
+            if (number <= 1)
+                return false;
+            if (number <= 3)
+                return true;
+
+            if (number % 2 == 0 || number % 3 == 0)
+                return false;
+
+            for (int i = 5; i * i <= number; i += 6)
+            {
+                if (number % i == 0 || number % (i + 2) == 0)
+                    return false;
+            }
+
+            return true;
         }
     }
 }
