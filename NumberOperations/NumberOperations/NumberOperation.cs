@@ -1,4 +1,5 @@
-﻿using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace NumberOperations
 {
@@ -68,6 +69,22 @@ namespace NumberOperations
             }
 
             return true;
+        }
+
+        public static bool IsNumberPolindrome(int number)
+        {
+            int original, remainder, reverse = 0;
+            original = number;
+            while (number > 0)
+            {
+                remainder = number % 10;
+                reverse = reverse * 10 + remainder;
+                number /= 10;
+            }
+
+            if (original == reverse) return true;
+
+            return false;
         }
     }
 }

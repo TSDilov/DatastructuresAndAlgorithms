@@ -4,6 +4,6 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine(NumberOperation.IsPrime(6));
+        Console.WriteLine(NumberOperation.IsNumberPolindrome(6336));
     }
 }
