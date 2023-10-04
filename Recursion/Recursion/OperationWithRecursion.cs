@@ -38,5 +38,34 @@ namespace Recursion
             else if (exponent == 0) { return 1; }
             else { return number * Power(number, exponent - 1); }
         }
+
+        public static int BinarySearch(int[] array, int target)
+        {
+            Array.Sort(array);
+            return BinarySearchRecursive(array, target, 0, array.Length - 1);
+        }
+
+        private static int BinarySearchRecursive(int[] array, int target, int left, int right)
+        {
+            try
+            {
+                var middle = left + (right - left) / 2;
+                if (array[middle] == target)
+                {
+                    return middle;
+                }
+
+                if (target < array[middle])
+                {
+                    return BinarySearchRecursive(array, target, left, middle - 1);
+                }
+
+                return BinarySearchRecursive(array, target, middle + 1, right);
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
     }
 }

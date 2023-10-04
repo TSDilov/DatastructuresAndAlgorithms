@@ -5,27 +5,10 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var list = new Recursion.DataTypes.LinkedList<int>();
-        list.Add(1);
-        list.Add(2);
-        list.Add(3);
-        list.Add(4);
+        int[] unsortedArray = { 5, 2, 9, 1, 5, 6, 3 };
+        int target = 11;
 
-        var current = list.Head;
-        while (current != null)
-        {
-            Console.Write($"{current.Value} -> ");
-            current = current.Next;
-        }
-        Console.WriteLine("null");
-
-        list.Reverse();
-        current = list.Head;
-        while (current != null)
-        {
-            Console.Write($"{current.Value} -> ");
-            current = current.Next;
-        }
-        Console.WriteLine("null");
+        int result = OperationWithRecursion.BinarySearch(unsortedArray, target);
+        Console.WriteLine(result);
     }
 }
