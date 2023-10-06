@@ -7,13 +7,18 @@ internal class Program
     {
         var list = new CustomLinkedList<int>();
         list.Add(1);
+        list.Add(4);
+        list.Add(5);
         list.Add(2);
         list.Add(3);
         list.Add(4);
-        list.Add(5);
-
         list.Display();
         list.Reverse();
         list.Display();
+        list.Sort();
+        list.Display();
+        list.Reverse();
+        list.Display();
+        var node = list.FindNode(6);
     }
 }
