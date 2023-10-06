@@ -7,7 +7,7 @@
         public void Add(T value)
         {
             var newNode = new LinkedListNode<T>(value);
-            if (Head == null) { this.Head = newNode; }
+            if (this.Head == null) { this.Head = newNode; }
             else 
             {
                 var current = this.Head;
