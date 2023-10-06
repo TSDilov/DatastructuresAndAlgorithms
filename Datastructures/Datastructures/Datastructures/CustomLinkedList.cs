@@ -1,6 +1,4 @@
-﻿using System.Xml.Linq;
-
-namespace Datastructures.Datastructures
+﻿namespace Datastructures.Datastructures
 {
     public class CustomLinkedList<T>
     {

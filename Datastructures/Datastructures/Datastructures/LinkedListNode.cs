@@ -1,7 +1,4 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
-namespace Datastructures.Datastructures
+﻿namespace Datastructures.Datastructures
 {
     public class LinkedListNode<T>
     {
