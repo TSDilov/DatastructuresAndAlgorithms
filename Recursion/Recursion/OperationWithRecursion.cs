@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,40 @@ namespace Recursion
         {
             Array.Sort(array);
             return BinarySearchRecursive(array, target, 0, array.Length - 1);
+        }
+
+        public static void QuickSortAlgorithm(int[] array, int left, int right)
+        {
+            if (left < right)
+            {
+                var pivotIndex = Partition(array, left, right);
+                QuickSortAlgorithm(array, left, pivotIndex - 1);
+                QuickSortAlgorithm(array, pivotIndex + 1, right);
+            }
+        }
+
+        private static int Partition(int[] array, int left, int right)
+        {
+            var pivot = array[right];
+            var i = left - 1;
+            for (int j = left; j < right; j++)
+            {
+                if (array[j] < pivot)
+                {
+                    i++;
+                    Swap(array, i, j);
+                }
+            }
+
+            Swap(array, i + 1, right);
+            return i + 1;
+        }
+
+        private static void Swap(int[] array, int i, int j)
+        {
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
         }
 
         private static int BinarySearchRecursive(int[] array, int target, int left, int right)
