@@ -73,6 +73,33 @@
             this.Head = MergeSort(this.Head);
         }
 
+        public void Traverse(Action<T> action)
+        {
+            var current = this.Head;
+            while (current != null) 
+            {
+                action(current.Data);
+                current = current.Next;
+            }
+        }
+
+        public int Count()
+        {
+            var counter = 0;
+            if (this.Head == null)
+            {
+                return 0;
+            }
+            var current = this.Head;
+            while (current != null)
+            {
+                counter++;
+                current = current.Next;
+            }
+
+            return counter;
+        }
+
         private LinkedListNode<T> MergeSort(LinkedListNode<T> head)
         {
             if (head == null || head.Next == null)

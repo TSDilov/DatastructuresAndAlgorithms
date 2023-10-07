@@ -12,13 +12,13 @@ internal class Program
         list.Add(2);
         list.Add(3);
         list.Add(4);
-        list.Display();
-        list.Reverse();
-        list.Display();
-        list.Sort();
-        list.Display();
-        list.Reverse();
-        list.Display();
-        var node = list.FindNode(6);
+        list.Add(4);
+        list.Traverse((data) =>
+        {
+            for (int i = 1; i < list.Count(); i++)
+            {
+                Console.WriteLine(data);
+            }
+        });
     }
 }
