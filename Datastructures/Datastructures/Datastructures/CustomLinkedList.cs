@@ -1,25 +1,55 @@
-﻿namespace Datastructures.Datastructures
+﻿using System.Collections;
+
+namespace Datastructures.Datastructures
 {
-    public class CustomLinkedList<T>
+    public class CustomLinkedList<T> : IEnumerable<T>
     {
+        private bool IsCirculer = false;
         public LinkedListNode<T> Head { get; private set; }
 
         public void Add(T data)
         {
-            var newNode = new LinkedListNode<T>(data);
-            if (this.Head == null)
+            if (!IsCirculer)
             {
-                this.Head = newNode;
+                var newNode = new LinkedListNode<T>(data);
+                if (this.Head == null)
+                {
+                    this.Head = newNode;
+                }
+                else
+                {
+                    var current = this.Head;
+                    while (current.Next != null)
+                    {
+                        current = current.Next;
+                    }
+
+                    current.Next = newNode;
+                }
             }
             else 
             {
-                var current = this.Head;
-                while (current.Next != null) 
+                var newNode = new LinkedListNode<T>(data);
+                if (this.Head == null)
                 {
-                    current = current.Next;
+                    this.Head = newNode;
+                    this.Head.Next = this.Head;
                 }
+                else
+                {
+                    var current = this.Head;
+                    while (current != null)
+                    {
+                        if (current.Next == this.Head)
+                        { 
+                            current.Next = newNode;
+                            current.Next.Next = this.Head;
+                            break;
+                        }
 
-                current.Next = newNode;
+                        current = current.Next;
+                    }
+                }
             }
         }
 
@@ -100,6 +130,54 @@
             return counter;
         }
 
+        public void SetCircular(bool isCircular)
+        {
+            this.IsCirculer = isCircular;
+            if (isCircular)
+            {
+                var current = this.Head;
+                while (current != null)
+                {
+                    if (current.Next == null)
+                    {
+                        current.Next = this.Head;
+                        break;
+                    }
+
+                    current = current.Next;
+                }
+            }
+            else 
+            {
+                var current = this.Head;
+                while (current != null)
+                {
+                    if (current.Next == this.Head)
+                    {
+                        current.Next = null;
+                        break;
+                    }
+
+                    current = current.Next;
+                }
+            }
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            var current = this.Head;
+            while (current != null)
+            {
+                yield return current.Data;
+                current = current.Next;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
         private LinkedListNode<T> MergeSort(LinkedListNode<T> head)
         {
             if (head == null || head.Next == null)
@@ -159,6 +237,6 @@
             }
 
             return slow;
-        }
+        }      
     }
 }

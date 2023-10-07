@@ -6,6 +6,7 @@ internal class Program
     private static void Main(string[] args)
     {
         var list = new CustomLinkedList<int>();
+        list.SetCircular(true);
         list.Add(1);
         list.Add(4);
         list.Add(5);
@@ -13,12 +14,9 @@ internal class Program
         list.Add(3);
         list.Add(4);
         list.Add(4);
-        list.Traverse((data) =>
-        {
-            for (int i = 1; i < list.Count(); i++)
-            {
-                Console.WriteLine(data);
-            }
-        });
+        list.Add(7);
+        list.SetCircular(false);
+        list.Add(10);
+        
     }
 }
