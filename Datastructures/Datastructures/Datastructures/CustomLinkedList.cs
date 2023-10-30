@@ -163,6 +163,34 @@ namespace Datastructures.Datastructures
             }
         }
 
+        public void RemoveDuplicates()
+        {
+            if (this.Head == null)
+            {
+                return;
+            }
+
+            var current = this.Head;
+
+            while (current != null)
+            {
+                var runner = current;
+                while (runner.Next != null)
+                {
+                    if (EqualityComparer<T>.Default.Equals(current.Data, runner.Next.Data))
+                    {
+                        runner.Next = runner.Next.Next;
+                    }
+                    else
+                    {
+                        runner = runner.Next;
+                    }
+                }
+
+                current = current.Next;
+            }
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var current = this.Head;
