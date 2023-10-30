@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace Datastructures.Datastructures
+namespace Datastructures.LinkedList
 {
     public class CustomLinkedList<T> : IEnumerable<T>
     {
@@ -12,13 +12,13 @@ namespace Datastructures.Datastructures
             if (!IsCirculer)
             {
                 var newNode = new LinkedListNode<T>(data);
-                if (this.Head == null)
+                if (Head == null)
                 {
-                    this.Head = newNode;
+                    Head = newNode;
                 }
                 else
                 {
-                    var current = this.Head;
+                    var current = Head;
                     while (current.Next != null)
                     {
                         current = current.Next;
@@ -27,23 +27,23 @@ namespace Datastructures.Datastructures
                     current.Next = newNode;
                 }
             }
-            else 
+            else
             {
                 var newNode = new LinkedListNode<T>(data);
-                if (this.Head == null)
+                if (Head == null)
                 {
-                    this.Head = newNode;
-                    this.Head.Next = this.Head;
+                    Head = newNode;
+                    Head.Next = Head;
                 }
                 else
                 {
-                    var current = this.Head;
+                    var current = Head;
                     while (current != null)
                     {
-                        if (current.Next == this.Head)
-                        { 
+                        if (current.Next == Head)
+                        {
                             current.Next = newNode;
-                            current.Next.Next = this.Head;
+                            current.Next.Next = Head;
                             break;
                         }
 
@@ -55,7 +55,7 @@ namespace Datastructures.Datastructures
 
         public void Display()
         {
-            var current = this.Head;
+            var current = Head;
             while (current != null)
             {
                 Console.Write(current.Data + " ");
@@ -67,7 +67,7 @@ namespace Datastructures.Datastructures
         public void Reverse()
         {
             LinkedListNode<T> previous = null;
-            var current = this.Head;
+            var current = Head;
             LinkedListNode<T> next = null;
 
             while (current != null)
@@ -78,14 +78,14 @@ namespace Datastructures.Datastructures
                 current = next;
             }
 
-            this.Head = previous;
+            Head = previous;
         }
 
         public LinkedListNode<T> FindNode(T value)
         {
-            var current = this.Head;
+            var current = Head;
 
-            while (current != null) 
+            while (current != null)
             {
                 if (EqualityComparer<T>.Default.Equals(current.Data, value))
                 {
@@ -100,13 +100,13 @@ namespace Datastructures.Datastructures
 
         public void Sort()
         {
-            this.Head = MergeSort(this.Head);
+            Head = MergeSort(Head);
         }
 
         public void Traverse(Action<T> action)
         {
-            var current = this.Head;
-            while (current != null) 
+            var current = Head;
+            while (current != null)
             {
                 action(current.Data);
                 current = current.Next;
@@ -116,11 +116,11 @@ namespace Datastructures.Datastructures
         public int Count()
         {
             var counter = 0;
-            if (this.Head == null)
+            if (Head == null)
             {
                 return 0;
             }
-            var current = this.Head;
+            var current = Head;
             while (current != null)
             {
                 counter++;
@@ -132,27 +132,27 @@ namespace Datastructures.Datastructures
 
         public void SetCircular(bool isCircular)
         {
-            this.IsCirculer = isCircular;
+            IsCirculer = isCircular;
             if (isCircular)
             {
-                var current = this.Head;
+                var current = Head;
                 while (current != null)
                 {
                     if (current.Next == null)
                     {
-                        current.Next = this.Head;
+                        current.Next = Head;
                         break;
                     }
 
                     current = current.Next;
                 }
             }
-            else 
+            else
             {
-                var current = this.Head;
+                var current = Head;
                 while (current != null)
                 {
-                    if (current.Next == this.Head)
+                    if (current.Next == Head)
                     {
                         current.Next = null;
                         break;
@@ -165,12 +165,12 @@ namespace Datastructures.Datastructures
 
         public void RemoveDuplicates()
         {
-            if (this.Head == null || this.IsCirculer)
+            if (Head == null || IsCirculer)
             {
                 return;
             }
 
-            var current = this.Head;
+            var current = Head;
 
             while (current != null)
             {
@@ -193,13 +193,13 @@ namespace Datastructures.Datastructures
 
         public T FindNthToLast(int n)
         {
-            if (n < 1 || this.Head == null || this.IsCirculer)
+            if (n < 1 || Head == null || IsCirculer)
             {
-                return default(T);
+                return default;
             }
 
-            var firstPointer = this.Head;
-            var secondPointer = this.Head;
+            var firstPointer = Head;
+            var secondPointer = Head;
 
             for (int i = 0; i < n; i++)
             {
@@ -207,13 +207,13 @@ namespace Datastructures.Datastructures
                 {
                     firstPointer = firstPointer.Next;
                 }
-                else 
+                else
                 {
-                    return default(T);
+                    return default;
                 }
             }
 
-            while (firstPointer.Next != null) 
+            while (firstPointer.Next != null)
             {
                 firstPointer = firstPointer.Next;
                 secondPointer = secondPointer.Next;
@@ -224,18 +224,18 @@ namespace Datastructures.Datastructures
 
         public bool DeleteFromHead(int n)
         {
-            if (n < 1 || this.Head == null)
+            if (n < 1 || Head == null)
             {
                 return false;
             }
 
             if (n == 1)
             {
-                this.Head = this.Head.Next;
+                Head = Head.Next;
                 return true;
             }
 
-            var current = this.Head;
+            var current = Head;
             for (int i = 1; i < n - 1; i++)
             {
                 if (current.Next != null)
@@ -248,7 +248,7 @@ namespace Datastructures.Datastructures
                 }
             }
 
-            if (current.Next != null) 
+            if (current.Next != null)
             {
                 current.Next = current.Next.Next;
                 return true;
@@ -259,13 +259,13 @@ namespace Datastructures.Datastructures
 
         public bool HasCycle()
         {
-            if (this.Head == null)
+            if (Head == null)
             {
                 return false;
             }
 
-            var slow = this.Head;
-            var fast = this.Head;
+            var slow = Head;
+            var fast = Head;
 
             while (fast != null && fast.Next != null)
             {
@@ -283,7 +283,7 @@ namespace Datastructures.Datastructures
 
         public IEnumerator<T> GetEnumerator()
         {
-            var current = this.Head;
+            var current = Head;
             while (current != null)
             {
                 yield return current.Data;
@@ -293,7 +293,7 @@ namespace Datastructures.Datastructures
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
 
         private LinkedListNode<T> MergeSort(LinkedListNode<T> head)
@@ -316,11 +316,11 @@ namespace Datastructures.Datastructures
         private LinkedListNode<T> Merge(LinkedListNode<T> left, LinkedListNode<T> right)
         {
             LinkedListNode<T> result = null;
-            if (left == null) 
+            if (left == null)
             {
                 return right;
             }
-            else if (right == null) 
+            else if (right == null)
             {
                 return left;
             }
@@ -330,7 +330,7 @@ namespace Datastructures.Datastructures
                 result = left;
                 result.Next = Merge(left.Next, right);
             }
-            else 
+            else
             {
                 result = right;
                 result.Next = Merge(left, right.Next);
@@ -355,6 +355,6 @@ namespace Datastructures.Datastructures
             }
 
             return slow;
-        }      
+        }
     }
 }
