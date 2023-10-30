@@ -257,6 +257,30 @@ namespace Datastructures.Datastructures
             return false;
         }
 
+        public bool HasCycle()
+        {
+            if (this.Head == null)
+            {
+                return false;
+            }
+
+            var slow = this.Head;
+            var fast = this.Head;
+
+            while (fast != null && fast.Next != null)
+            {
+                slow = slow.Next;
+                fast = fast.Next.Next;
+
+                if (slow == fast)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var current = this.Head;

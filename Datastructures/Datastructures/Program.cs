@@ -16,14 +16,14 @@ internal class Program
         list.Add(7);
         list.Add(10);
         list.Sort();
-        foreach (var item in list) 
-        {
-            Console.WriteLine(item);
-        }
-        Console.WriteLine(list.DeleteFromHead(2));
-        foreach (var item in list)
-        {
-            Console.WriteLine(item);
-        }
+        Console.WriteLine(list.HasCycle());
+        var list2 = new CustomLinkedList<int>();
+        list2.Add(1);
+        list2.Add(2);
+        list2.Add(3);
+        list2.Add(4);
+        list2.Add(5);
+        list2.Head.Next.Next.Next.Next = list2.Head.Next;
+        Console.WriteLine(list2.HasCycle());
     }
 }
