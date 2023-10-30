@@ -165,7 +165,7 @@ namespace Datastructures.Datastructures
 
         public void RemoveDuplicates()
         {
-            if (this.Head == null)
+            if (this.Head == null || this.IsCirculer)
             {
                 return;
             }
@@ -189,6 +189,37 @@ namespace Datastructures.Datastructures
 
                 current = current.Next;
             }
+        }
+
+        public T FindNthToLast(int n)
+        {
+            if (n < 1 || this.Head == null || this.IsCirculer)
+            {
+                return default(T);
+            }
+
+            var firstPointer = this.Head;
+            var secondPointer = this.Head;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (firstPointer.Next != null)
+                {
+                    firstPointer = firstPointer.Next;
+                }
+                else 
+                {
+                    return default(T);
+                }
+            }
+
+            while (firstPointer.Next != null) 
+            {
+                firstPointer = firstPointer.Next;
+                secondPointer = secondPointer.Next;
+            }
+
+            return secondPointer.Data;
         }
 
         public IEnumerator<T> GetEnumerator()

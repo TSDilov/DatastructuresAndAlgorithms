@@ -16,15 +16,10 @@ internal class Program
         list.Add(7);
         list.Add(10);
         list.Sort();
-        Console.WriteLine(list.Head.Data);
-        foreach (var item in list)
+        foreach (var item in list) 
         {
             Console.WriteLine(item);
         }
-        list.RemoveDuplicates();
-        foreach (var item in list)
-        {
-            Console.WriteLine(item);
-        }
+        Console.WriteLine(list.FindNthToLast(5));
     }
 }
