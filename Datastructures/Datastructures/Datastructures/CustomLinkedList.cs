@@ -222,6 +222,41 @@ namespace Datastructures.Datastructures
             return secondPointer.Data;
         }
 
+        public bool DeleteFromHead(int n)
+        {
+            if (n < 1 || this.Head == null)
+            {
+                return false;
+            }
+
+            if (n == 1)
+            {
+                this.Head = this.Head.Next;
+                return true;
+            }
+
+            var current = this.Head;
+            for (int i = 1; i < n - 1; i++)
+            {
+                if (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            if (current.Next != null) 
+            {
+                current.Next = current.Next.Next;
+                return true;
+            }
+
+            return false;
+        }
+
         public IEnumerator<T> GetEnumerator()
         {
             var current = this.Head;

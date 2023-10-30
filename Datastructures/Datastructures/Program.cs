@@ -20,6 +20,10 @@ internal class Program
         {
             Console.WriteLine(item);
         }
-        Console.WriteLine(list.FindNthToLast(5));
+        Console.WriteLine(list.DeleteFromHead(2));
+        foreach (var item in list)
+        {
+            Console.WriteLine(item);
+        }
     }
 }
