@@ -31,6 +31,16 @@ namespace Datastructures.BinarySearchTree
             InOrder(this.root);
         }
 
+        public void PreOrderPrint()
+        {
+            PreOrder(this.root);
+        }
+
+        public void PostOrder()
+        {
+            PostOrder(this.root);
+        }
+
         private TreeNode<T> Insert(TreeNode<T> node, T data)
         {
             if (node == null) 
@@ -124,6 +134,30 @@ namespace Datastructures.BinarySearchTree
             InOrder(node.Left);
             Console.Write(node.Data + " ");
             InOrder(node.Right);
+        }
+
+        private void PreOrder(TreeNode<T> node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            Console.Write(node.Data + " ");
+            InOrder(node.Left);
+            InOrder(node.Right);
+        }
+
+        private void PostOrder(TreeNode<T> node)
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            InOrder(node.Left);
+            InOrder(node.Right);
+            Console.Write(node.Data + " ");
         }
     }
 }

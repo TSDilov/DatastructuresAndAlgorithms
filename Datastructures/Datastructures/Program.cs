@@ -10,9 +10,12 @@ internal class Program
         tree.Insert(5);
         tree.Insert(25);
         tree.Insert(3);
-        tree.InOrderPrint();
-        tree.Delete(3);
+        tree.Insert(6);
+        tree.Insert(17);
+        tree.PostOrder();
+        tree.Delete(15);
         Console.WriteLine();
-        tree.InOrderPrint();
+        tree.PostOrder();
+        
     }
 }
