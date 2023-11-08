@@ -1,5 +1,4 @@
 ﻿using Recursion;
-using Recursion.DataTypes;
 
 internal class Program
 {
