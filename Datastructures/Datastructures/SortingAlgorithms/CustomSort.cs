@@ -88,6 +88,46 @@
             return Merge(leftList, rightList);
         }
 
+        public static List<T> QuickSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var list = new List<T>(collection);
+            var numberOfItems = list.Count;
+
+            if (numberOfItems <= 1)
+            {
+                return list;
+            }
+
+            var pivotIndex = list.Count / 2;
+            T pivotValue = list[pivotIndex];
+            var leftList = new List<T>();
+            var rightList = new List<T>();
+
+            for (int i = 0; i < numberOfItems; i++)
+            {
+                if (i == pivotIndex)
+                {
+                    continue;
+                }
+
+                if (list[i].CompareTo(pivotValue) <= 0) 
+                {
+                    leftList.Add(list[i]);
+                }
+                else 
+                {
+                    rightList.Add(list[i]);
+                }
+            }
+
+            var sortedList = new List<T>();
+            sortedList.AddRange(QuickSortAlgorithm(leftList));
+            sortedList.Add(pivotValue);
+            sortedList.AddRange(QuickSortAlgorithm(rightList));
+
+            return sortedList;
+        }
+
         private static List<T> Merge<T>(List<T> leftList, List<T> rightList) where T : IComparable<T>
         {
             var result = new List<T>();
