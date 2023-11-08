@@ -24,5 +24,26 @@
 
             return list;
         }
+
+        public static List<T> InsertionSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var list = new List<T>(collection);
+            var numberOfItems = list.Count;
+
+            for (int i = 1; i < numberOfItems; i++)
+            {
+                T key = list[i];
+                var j = i - 1;
+                while (j >= 0 && list[j].CompareTo(key) > 0)
+                {
+                    list[j + 1] = list[j];
+                    j--;
+                }
+
+                list[j + 1] = key;
+            }
+
+            return list;
+        }
     }
 }

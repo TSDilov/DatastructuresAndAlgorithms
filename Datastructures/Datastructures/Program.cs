@@ -7,7 +7,14 @@ internal class Program
     private static void Main(string[] args)
     {
         int[] arr = { 64, 25, 12, 22, 11 };
-        var list = CustomSort.SelectionSortAlgorithm(arr);
+
+        var stack = new Stack<int>();
+        stack.Push(arr[0]);
+        stack.Push(arr[1]);
+        stack.Push(arr[2]);
+        stack.Push(arr[3]);
+        stack.Push(arr[4]);
+        var list = CustomSort.InsertionSortAlgorithm(arr);
         Console.WriteLine(string.Join(", ", list));
     }
 }
