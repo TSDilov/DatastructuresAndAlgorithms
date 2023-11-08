@@ -68,6 +68,62 @@
             return list;
         }
 
+        public static List<T> MergeSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var list = new List<T>(collection);
+            var numberOfItems = list.Count;
+
+            if (numberOfItems <= 1)
+            { 
+                return list; 
+            }
+
+            var middle = numberOfItems / 2;
+            var leftList = new List<T>(list.GetRange(0, middle));
+            var rightList = new List<T>(list.GetRange(middle, numberOfItems - middle));
+
+            leftList = MergeSortAlgorithm(leftList);
+            rightList = MergeSortAlgorithm(rightList);
+
+            return Merge(leftList, rightList);
+        }
+
+        private static List<T> Merge<T>(List<T> leftList, List<T> rightList) where T : IComparable<T>
+        {
+            var result = new List<T>();
+            int i = 0, j = 0;
+            var leftCount = leftList.Count;
+            var rightCount = rightList.Count;
+
+            while (i < leftCount && j < rightCount)
+            {
+                if (leftList[i].CompareTo(rightList[j]) <= 0)
+                {
+                    result.Add(leftList[i]);
+                    i++;
+                }
+                else 
+                {
+                    result.Add(rightList[j]);
+                    j++;
+                }
+            }
+
+            while (i < leftCount)
+            {
+                result.Add(leftList[i]);
+                i++;
+            }
+
+            while (j < rightCount)
+            {
+                result.Add(rightList[j]);
+                j++;
+            }
+
+            return result;
+        }
+
         private static void Heapify<T>(List<T> list, int numberOfItems, int i) where T : IComparable<T>
         {
             var largest = i;

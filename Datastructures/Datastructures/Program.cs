@@ -15,7 +15,7 @@ internal class Program
         stack.Push(arr[3]);
         stack.Push(arr[4]);
         stack.Push(arr[5]);
-        var list = CustomSort.HeapSortAlgorithm(arr);
+        var list = CustomSort.MergeSortAlgorithm(stack);
         Console.WriteLine(string.Join(", ", list));
     }
 }
