@@ -128,6 +128,39 @@
             return sortedList;
         }
 
+        public static List<T> BubbleSort<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var list = new List<T>(collection);
+            var numberOfItems = list.Count;
+            bool swapped;
+
+            if (numberOfItems <= 1)
+            {
+                return list;
+            }
+
+            do
+            {
+                swapped = false;
+                for (int i = 1; i < numberOfItems; i++)
+                {
+                    if (list[i - 1].CompareTo(list[i]) > 0)
+                    {
+                        T temp = list[i - 1];
+                        list[i - 1] = list[i];
+                        list[i] = temp;
+
+                        swapped = true;
+                    }
+                }
+
+                numberOfItems--;
+
+            } while (swapped);
+
+            return list;
+        }
+
         private static List<T> Merge<T>(List<T> leftList, List<T> rightList) where T : IComparable<T>
         {
             var result = new List<T>();
