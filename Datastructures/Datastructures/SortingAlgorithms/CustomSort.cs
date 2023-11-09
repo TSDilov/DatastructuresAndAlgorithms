@@ -165,7 +165,6 @@
         {
             var list = new List<T>(collection);
             var numberOfItems = list.Count;
-            bool swapped;
 
             if (numberOfItems <= 1)
             {
@@ -190,6 +189,45 @@
 
                 gap /= 2;
             }
+
+            return list;
+        }
+
+        public static List<T> CombSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var list = new List<T>(collection);
+            var numberOfItems = list.Count;
+
+            if (numberOfItems <= 1)
+            {
+                return list;
+            }
+
+            var gap = numberOfItems;
+            var shrink = 1.3;
+            bool swapped;
+
+            do
+            {
+                gap = (int)(gap - shrink);
+                if (gap < 1)
+                {
+                    gap = 1;
+                }
+
+                swapped = false;
+                for (int i = 0; i + gap < numberOfItems; i++)
+                {
+                    if (list[i].CompareTo(list[i + gap]) > 0)
+                    {
+                        T temp = list[i];
+                        list[i] = list[i + gap];
+                        list[i + gap] = temp;
+
+                        swapped = true;
+                    }
+                }
+            } while (gap > 1 || swapped);
 
             return list;
         }

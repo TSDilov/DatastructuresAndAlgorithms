@@ -15,7 +15,7 @@ internal class Program
         stack.Push(arr[3]);
         stack.Push(arr[4]);
         stack.Push(arr[5]);
-        var list = CustomSort.ShellSortAlgorithm(arr);
+        var list = CustomSort.CombSortAlgorithm(stack);
         Console.WriteLine(string.Join(", ", list));
     }
 }
