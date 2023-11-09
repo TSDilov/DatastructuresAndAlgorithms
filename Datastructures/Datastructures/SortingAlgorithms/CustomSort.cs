@@ -128,7 +128,7 @@
             return sortedList;
         }
 
-        public static List<T> BubbleSort<T>(IEnumerable<T> collection) where T : IComparable<T>
+        public static List<T> BubbleSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
         {
             var list = new List<T>(collection);
             var numberOfItems = list.Count;
@@ -157,6 +157,39 @@
                 numberOfItems--;
 
             } while (swapped);
+
+            return list;
+        }
+
+        public static List<T> ShellSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var list = new List<T>(collection);
+            var numberOfItems = list.Count;
+            bool swapped;
+
+            if (numberOfItems <= 1)
+            {
+                return list;
+            }
+
+            var gap = numberOfItems / 2;
+            while (gap > 0)
+            {
+                for (int i = gap; i < numberOfItems; i++)
+                {
+                    T temp = list[i];
+                    var j = i;
+                    while (j >= gap && list[j - gap].CompareTo(temp) > 0) 
+                    {
+                        list[j] = list[j - gap];
+                        j -= gap;
+                    }
+
+                    list[j] = temp;
+                }
+
+                gap /= 2;
+            }
 
             return list;
         }
