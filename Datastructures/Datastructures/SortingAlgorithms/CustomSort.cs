@@ -232,6 +232,58 @@
             return list;
         }
 
+        public static List<T> BucketSortAlgorithm<T>(IEnumerable<T> collection) where T : IComparable<T>
+        {
+            var inputList = new List<T>(collection);
+
+            if (inputList.Count == 0)
+            {
+                return inputList;
+            }
+
+            dynamic minValue = inputList[0];
+            dynamic maxValue = inputList[0];
+
+            for (int i = 1; i < inputList.Count; i++)
+            {
+                if (inputList[i].CompareTo(minValue) < 0)
+                {
+                    minValue = inputList[i];
+                }
+                else if (inputList[i].CompareTo(maxValue) > 0)
+                {
+                    maxValue = inputList[i];
+                }
+            }
+
+            int bucketCount = (int)(maxValue - minValue) + 1;
+            var buckets = new List<List<T>>(bucketCount);
+
+            for (int i = 0; i < bucketCount; i++)
+            {
+                buckets.Add(new List<T>());
+            }
+
+            foreach (var item in inputList)
+            {
+                int bucketIndex = item.CompareTo(minValue);
+                buckets[bucketIndex].Add(item);
+            }
+
+            var sortedList = new List<T>();
+
+            foreach (var bucket in buckets)
+            {
+                if (bucket.Count > 0)
+                {
+                    bucket.Sort(); 
+                    sortedList.AddRange(bucket);
+                }
+            }
+
+            return sortedList;
+        }
+
         private static List<T> Merge<T>(List<T> leftList, List<T> rightList) where T : IComparable<T>
         {
             var result = new List<T>();
