@@ -1,4 +1,5 @@
 ﻿using Datastructures.BinarySearchTree;
+using Datastructures.Graph;
 using Datastructures.SortingAlgorithms;
 using Datastructures.Stack;
 
@@ -6,16 +7,34 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        int[] arr = { 64, 25, 12, 22, 11, 22 };
+        var graph = new Graph<int, int>();
 
-        var stack = new Stack<int>();
-        stack.Push(arr[0]);
-        stack.Push(arr[1]);
-        stack.Push(arr[2]);
-        stack.Push(arr[3]);
-        stack.Push(arr[4]);
-        stack.Push(arr[5]);
-        var list = CustomSort.QuickSortAlgorithm(arr);
-        Console.WriteLine(string.Join(", ", list));
+        for (int i = 0; i < 5; i++)
+        {
+            graph.AddVertex(i);
+        }
+
+        graph.AddEdge(0, 1, 1);
+        graph.AddEdge(0, 2, 4);
+        graph.AddEdge(1, 2, 3);
+        graph.AddEdge(1, 3, 2);
+        graph.AddEdge(1, 4, 2);
+        graph.AddEdge(3, 2, 5);
+        graph.AddEdge(3, 1, 1);
+        graph.AddEdge(4, 3, -3);
+
+        graph.PrintGraph();
+
+        int sourceVertex = 0;
+        var distances = graph.BellmanFordAlgorithm(sourceVertex);
+
+        if (distances != null)
+        {
+            Console.WriteLine($"Shortest distances from vertex {sourceVertex}:");
+            foreach (var kvp in distances)
+            {
+                Console.WriteLine($"To vertex {kvp.Key}: {kvp.Value}");
+            }
+        }
     }
 }
