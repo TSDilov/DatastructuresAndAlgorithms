@@ -31,6 +31,51 @@ namespace StringOperations
             return newFirst == newSecond;
         }
 
+        public static bool IsAnagrams(string first, string second)
+        {
+            first = first.ToLower();
+            second = second.ToLower();
+            if (first.Length != second.Length)
+            {
+                return false;
+            }
+
+            var dic = new Dictionary<char, int>();
+            for (int i = 0; i < first.Length; i++)
+            {
+                if (!dic.ContainsKey(first[i]))
+                {
+                    dic.Add(first[i], 1);
+                }
+                else
+                {
+                    dic[first[i]]++;
+                }
+            }
+
+            for (int i = 0; i < second.Length; i++)
+            {
+                if (!dic.ContainsKey(second[i]))
+                {
+                    return false;
+                }
+                else
+                {
+                    dic[second[i]]--;
+                }
+            }
+
+            foreach (var key in dic.Keys) 
+            {
+                if (dic[key] != 0)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static string ReverseString(string keyString)
         {
             var result = new char[keyString.Length];
