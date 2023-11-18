@@ -153,6 +153,53 @@ namespace Datastructures.Graph
             return distances;
         }
 
+        public Dictionary<Tuple<TVertex, TVertex>, TEdge> FloydWarshallAlgorithm()
+        {
+            var distances = new Dictionary<Tuple<TVertex, TVertex>, TEdge>();
+            var infinytyFlag = GetInfinityFlag();
+            foreach (var vertex1 in this.GetVertices())
+            {
+                foreach (var vertex2 in this.GetVertices())
+                {
+                    var tuple = Tuple.Create(vertex1, vertex2);
+                    if (vertex1.Equals(vertex2))
+                    {
+                        distances[tuple] = default;
+                    }
+                    else if (this.HasEdge(vertex1, vertex2))
+                    {
+                        distances[tuple] = this.adjacencyLists[vertex1].Find(edge => edge.Destination.Equals(vertex2)).Weight;
+                    }
+                    else
+                    {
+                        distances[tuple] = infinytyFlag;
+                    }
+                }
+            }
+
+            foreach (var intermediateVertex in this.GetVertices())
+            {
+                foreach (var vertex1 in this.GetVertices())
+                {
+                    foreach (var vertex2 in this.GetVertices())
+                    {
+                        var tuple1 = Tuple.Create(vertex1, vertex2);
+                        var tuple2 = Tuple.Create(vertex1, intermediateVertex);
+                        var tuple3 = Tuple.Create(intermediateVertex, vertex2);
+
+                        TEdge sum = Add(distances[tuple2], distances[tuple3]);
+
+                        if (Comparer(sum, distances[tuple1]) < 0)
+                        {
+                            distances[tuple1] = sum;
+                        }
+                    }
+                }
+            }
+
+            return distances;
+        }
+
         private TEdge Add(TEdge a, TEdge b)
         {
             return (TEdge)((dynamic)a + b);

@@ -25,16 +25,12 @@ internal class Program
 
         graph.PrintGraph();
 
-        int sourceVertex = 0;
-        var distances = graph.BellmanFordAlgorithm(sourceVertex);
+        var distances = graph.FloydWarshallAlgorithm();
 
-        if (distances != null)
+        Console.WriteLine("Shortest Distances:");
+        foreach (var entry in distances)
         {
-            Console.WriteLine($"Shortest distances from vertex {sourceVertex}:");
-            foreach (var kvp in distances)
-            {
-                Console.WriteLine($"To vertex {kvp.Key}: {kvp.Value}");
-            }
+            Console.WriteLine($"From {entry.Key.Item1} to {entry.Key.Item2}: {entry.Value}");
         }
     }
 }
