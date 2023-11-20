@@ -1,4 +1,5 @@
 ﻿using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
 namespace Datastructures.Graph
 {
@@ -198,6 +199,45 @@ namespace Datastructures.Graph
             }
 
             return distances;
+        }
+
+        public Dictionary<TVertex, TEdge> DijkstraAlgorithm(TVertex source)
+        {
+            var distances = new Dictionary<TVertex, TEdge>();
+            var visited = new HashSet<TVertex>();
+            var infinytyFlag =this.GetInfinityFlag();
+
+            foreach (var vertex in this.GetVertices())
+            {
+                distances[vertex] = infinytyFlag;
+            }
+
+            distances[source] = default;
+
+            while (visited.Count < this.GetVertices().Count())
+            {
+                var currentVertex = GetMinimumDistanceVertex(distances, visited);
+                visited.Add(currentVertex);
+
+                foreach (var edge in this.adjacencyLists[currentVertex])
+                {
+                    if (!visited.Contains(edge.Destination))
+                    {
+                        var potencialDistance = Add(distances[currentVertex], edge.Weight);
+                        if (Comparer(potencialDistance, distances[edge.Destination]) < 0)
+                        {
+                            distances[edge.Destination] = potencialDistance;
+                        }
+                    }
+                }
+            }
+
+            return distances;
+        }
+
+        private TVertex GetMinimumDistanceVertex(Dictionary<TVertex, TEdge> distances, HashSet<TVertex> visited)
+        {
+            return distances.Where(entry => !visited.Contains(entry.Key)).MinBy(entry => entry.Value).Key;
         }
 
         private TEdge Add(TEdge a, TEdge b)

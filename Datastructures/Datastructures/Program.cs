@@ -9,28 +9,26 @@ internal class Program
     {
         var graph = new Graph<int, int>();
 
-        for (int i = 0; i < 5; i++)
-        {
-            graph.AddVertex(i);
-        }
+        graph.AddVertex(1);
+        graph.AddVertex(2);
+        graph.AddVertex(3);
+        graph.AddVertex(4);
 
-        graph.AddEdge(0, 1, 1);
-        graph.AddEdge(0, 2, 4);
-        graph.AddEdge(1, 2, 3);
-        graph.AddEdge(1, 3, 2);
-        graph.AddEdge(1, 4, 2);
-        graph.AddEdge(3, 2, 5);
-        graph.AddEdge(3, 1, 1);
-        graph.AddEdge(4, 3, -3);
+        graph.AddEdge(1, 2, 2);
+        graph.AddEdge(1, 3, 4);
+        graph.AddEdge(2, 3, 1);
+        graph.AddEdge(2, 4, 7);
+        graph.AddEdge(3, 4, 3);
 
+        Console.WriteLine("Original Graph:");
         graph.PrintGraph();
 
-        var distances = graph.FloydWarshallAlgorithm();
+        var distances = graph.DijkstraAlgorithm(1);
 
-        Console.WriteLine("Shortest Distances:");
+        Console.WriteLine("Shortest Distances from Vertex 1:");
         foreach (var entry in distances)
         {
-            Console.WriteLine($"From {entry.Key.Item1} to {entry.Key.Item2}: {entry.Value}");
+            Console.WriteLine($"To {entry.Key}: {entry.Value}");
         }
     }
 }
