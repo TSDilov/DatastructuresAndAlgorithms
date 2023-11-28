@@ -1,28 +1,32 @@
-﻿using Datastructures.Graph;
+﻿using Datastructures;
 using Datastructures.Queue;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-       var queue = new CustomQueue<int>();
-        queue.Enqueue(1);
-        queue.Enqueue(2);
-        queue.Enqueue(3);
+        char[,] maze = {
+            {'S', '.', '.', '#', '.', '#'},
+            {'.', '#', '.', '#', '.', '.'},
+            {'.', '#', '.', '.', '.', '#'},
+            {'.', '#', '#', '#', '.', '#'},
+            {'.', '.', '.', '#', '.', 'E'}
+        };
 
-        while (!queue.IsEmpty())
+        int startRow = 0;
+        int startCol = 0;
+        int endRow = 4;
+        int endCol = 5;
+
+        int shortestPathLength = Algorithm.ShortestPathInMaze(maze, startRow, startCol, endRow, endCol);
+
+        if (shortestPathLength != -1)
         {
-            Console.WriteLine(queue.Dequeue());
+            Console.WriteLine($"Shortest path length: {shortestPathLength}");
         }
-
-        var priorityQueue = new CustomPriorityQueue<int>((a, b) => a.CompareTo(b));
-        priorityQueue.Enqueue(3);
-        priorityQueue.Enqueue(1);
-        priorityQueue.Enqueue(2);
-
-        while (priorityQueue.Count > 0)
+        else
         {
-            Console.WriteLine(priorityQueue.Dequeue());
+            Console.WriteLine("No path found!");
         }
     }
 }

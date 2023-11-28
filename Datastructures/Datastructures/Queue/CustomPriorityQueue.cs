@@ -3,11 +3,11 @@
     public class CustomPriorityQueue<T>
     {
         private List<T> heap = new List<T>();
-        private readonly Comparison<T> comparison;
+        private readonly IComparer<T> comparer;
 
-        public CustomPriorityQueue(Comparison<T> comparison) 
+        public CustomPriorityQueue(IComparer<T> comparer) 
         {
-            this.comparison = comparison;
+            this.comparer = comparer;
         }
 
         public int Count { get => heap.Count; }
@@ -19,7 +19,7 @@
             while (i > 0) 
             {
                 int j = (i - 1) / 2;
-                if (this.comparison(this.heap[i], this.heap[j]) >= 0)
+                if (this.comparer.Compare(this.heap[i], this.heap[j]) >= 0)
                 {
                     break;
                 }
@@ -46,12 +46,12 @@
                 }
 
                 var k = j + 1;
-                if (k <= count && this.comparison(this.heap[k], this.heap[j]) < 0)
+                if (k <= count && this.comparer.Compare(this.heap[k], this.heap[j]) < 0)
                 {
                     j = k;
                 }
 
-                if (this.comparison(this.heap[j], this.heap[i]) >= 0)
+                if (this.comparer.Compare(this.heap[j], this.heap[i]) >= 0)
                 {
                     break;
                 }
