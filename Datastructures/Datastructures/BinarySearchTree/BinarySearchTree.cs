@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-
-namespace Datastructures.BinarySearchTree
+﻿namespace Datastructures.BinarySearchTree
 {
     public class BinarySearchTree<T> where T : IComparable<T>
     {

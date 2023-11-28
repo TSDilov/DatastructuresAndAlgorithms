@@ -1,7 +1,4 @@
-﻿using System.Net.Http.Headers;
-using System.Runtime.CompilerServices;
-
-namespace Datastructures.Graph
+﻿namespace Datastructures.Graph
 {
     public class Graph<TVertex, TEdge> where TEdge : IConvertible
     {

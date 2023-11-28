@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Datastructures.SortingAlgorithms
+﻿namespace Datastructures.SortingAlgorithms
 {
     public class CustomSort
     {

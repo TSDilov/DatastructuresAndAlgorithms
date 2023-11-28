@@ -1,34 +1,28 @@
-﻿using Datastructures.BinarySearchTree;
-using Datastructures.Graph;
-using Datastructures.SortingAlgorithms;
-using Datastructures.Stack;
+﻿using Datastructures.Graph;
+using Datastructures.Queue;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
-        var graph = new Graph<int, int>();
+       var queue = new CustomQueue<int>();
+        queue.Enqueue(1);
+        queue.Enqueue(2);
+        queue.Enqueue(3);
 
-        graph.AddVertex(1);
-        graph.AddVertex(2);
-        graph.AddVertex(3);
-        graph.AddVertex(4);
-
-        graph.AddEdge(1, 2, 2);
-        graph.AddEdge(1, 3, 4);
-        graph.AddEdge(2, 3, 1);
-        graph.AddEdge(2, 4, 7);
-        graph.AddEdge(3, 4, 3);
-
-        Console.WriteLine("Original Graph:");
-        graph.PrintGraph();
-
-        var distances = graph.DijkstraAlgorithm(1);
-
-        Console.WriteLine("Shortest Distances from Vertex 1:");
-        foreach (var entry in distances)
+        while (!queue.IsEmpty())
         {
-            Console.WriteLine($"To {entry.Key}: {entry.Value}");
+            Console.WriteLine(queue.Dequeue());
+        }
+
+        var priorityQueue = new CustomPriorityQueue<int>((a, b) => a.CompareTo(b));
+        priorityQueue.Enqueue(3);
+        priorityQueue.Enqueue(1);
+        priorityQueue.Enqueue(2);
+
+        while (priorityQueue.Count > 0)
+        {
+            Console.WriteLine(priorityQueue.Dequeue());
         }
     }
 }
